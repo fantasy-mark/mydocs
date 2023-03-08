@@ -50,6 +50,8 @@ def updateYaml():
     """
     nav = 'nav:'
     buffer = ""
+    curLev = False
+    curDepth = 0
 
     with open('mkdocs.yml', mode='r', encoding='utf-8') as f:
         lines = f.readlines()  # 读取文件
@@ -66,18 +68,23 @@ def updateYaml():
 
         dirLevel = curDir.split(SEPARATOR)[1:]
         depth = len(dirLevel)
+        # 因为是bfs, 最多回退一级, 所以只需要回到上级即可
+        curLev = (depth == curDepth)
+        curDepth = depth
         if depth < 1:
             continue
 
         if len(files) < 1:
             continue
         for level, name in enumerate(dirLevel, start=1):
+            if curLev and level != len(dirLevel):
+                continue
             nav += '  ' * level + ' - ' + name + ':\n'
         for name in files:
             if not name.endswith('.md'):
                 continue
-            nav += '  ' * (depth + 1) + ' - ' + name.split('.')[0] + ': ' + curDir.split('docs' + SEPARATOR)[
-                1] + SEPARATOR + name + '\n'
+            nav += '  ' * (depth + 1) + ' - ' + name.split('.')[0] + ': ' + curDir.split('docs' + SEPARATOR)[1] + \
+                   SEPARATOR + name + '\n'
 
     if 'nav\n' == nav:  # 没匹配到任何文档情况
         return
@@ -106,10 +113,10 @@ def runBuild():
     if mode in ['', '1', 'local']:
         exec_cmd_status(f'mkdocs serve')
     elif mode in ['2', 'push']:
-        exec_cmd_status(f'git pull')
+        # exec_cmd_status(f'git pull')
         try2Push()
         exec_cmd_status(f'mkdocs gh-deploy')
-        print("Serving on https://fantasy-mark.github.io/docs/")
+        print("Serving on https://fantasy-mark.github.io/mydocs/")
 
 
 if __name__ == '__main__':
