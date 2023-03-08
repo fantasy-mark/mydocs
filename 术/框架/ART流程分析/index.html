@@ -1,0 +1,763 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../Code/unity/">
+      
+      
+        <link rel="next" href="../binder%E8%B5%B0%E8%AF%BB/">
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.0">
+    
+    
+      
+        <title>ART流程分析 - 个人图书馆</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.402914a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.a0c5b2b5.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#art" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="个人图书馆" class="md-header__button md-logo" aria-label="个人图书馆" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            个人图书馆
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              ART流程分析
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="个人图书馆" class="md-nav__button md-logo" aria-label="个人图书馆" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    个人图书馆
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+          器
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          器
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_1" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_1" id="__nav_1_1_label" tabindex="0">
+          工具
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_1_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1_1">
+          <span class="md-nav__icon md-icon"></span>
+          工具
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%99%A8/%E5%B7%A5%E5%85%B7/mkdocs/" class="md-nav__link">
+        mkdocs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%99%A8/%E5%B7%A5%E5%85%B7/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="md-nav__link">
+        常用命令
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          术
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          术
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+          Code
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          Code
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Code/unity/" class="md-nav__link">
+        unity
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          术
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          术
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+          框架
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          框架
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          ART流程分析
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        ART流程分析
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#art" class="md-nav__link">
+    ART虚拟机启动分析
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#art_1" class="md-nav__link">
+    ART虚拟机运行分析
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../binder%E8%B5%B0%E8%AF%BB/" class="md-nav__link">
+        binder走读
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#art" class="md-nav__link">
+    ART虚拟机启动分析
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#art_1" class="md-nav__link">
+    ART虚拟机运行分析
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  <h1>ART流程分析</h1>
+
+<div class="toc">
+<ul>
+<li><a href="#art">ART虚拟机启动分析</a></li>
+<li><a href="#art_1">ART虚拟机运行分析</a></li>
+</ul>
+</div>
+<blockquote>
+<p>流程基于 <a href="http://aospxref.com/android-11.0.0_r21/xref/">android 11源码</a> ， 参考 <a href="https://blog.csdn.net/luoshengyang/article/details/8885792">老罗的博客</a></p>
+</blockquote>
+<ul>
+<li>
+<p>Android进程fork自Zygote进程，本质还是Linux进程</p>
+</li>
+<li>
+<p>ART虚拟机流程可以阅读以下几个类帮助梳理整个jvm框架。</p>
+</li>
+</ul>
+<p><a href="http://aospxref.com/android-11.0.0_r21/xref/art/runtime/runtime.cc">runtime</a>、<a href="http://aospxref.com/android-11.0.0_r21/xref/art/runtime/thread_list.cc">thread_list</a>、<a href="http://aospxref.com/android-11.0.0_r21/xref/art/runtime/thread.cc">thread</a>、<a href="http://aospxref.com/android-11.0.0_r21/xref/art/runtime/signal_catcher.cc">signal_catcher</a>、<a href="http://aospxref.com/android-11.0.0_r21/xref/art/runtime/class_linker.cc">class_linker</a>、<a href="http://aospxref.com/android-11.0.0_r21/xref/art/runtime/intern_table.cc">intern_table</a>、<a href="http://aospxref.com/android-11.0.0_r21/xref/art/runtime/jni/java_vm_ext.cc">java_vm_ext</a></p>
+<ul>
+<li>JVM对应进程，JNIEev是线程独有</li>
+</ul>
+<hr />
+<h3 id="art">ART虚拟机启动分析</h3>
+<ol>
+<li>
+<p>创建了虚拟机实例；</p>
+</li>
+<li>
+<p>加载了Java核心类（由zygote）及其JNI方法；</p>
+</li>
+<li>
+<p>为主线程的设置了一个JNI环境；</p>
+</li>
+<li>
+<p>注册了Android核心类的JNI方法。</p>
+</li>
+</ol>
+<p><img alt="虚拟机启动" src="../art_start.drawio-0.svg" /></p>
+<pre><code class="language-java">//init.rc
+service zygote /system/bin/app_process -Xzygote /system/bin --zygote --start-system-server
+
+xref: /frameworks/base/cmds/app_process/app_main.cpp
+173  int main(int argc, char* const argv[])
+185      AppRuntime runtime(argv[0], computeArgBlockSize(argc, argv));
+    -&gt;
+34  class AppRuntime : public AndroidRuntime
+338          runtime.start(&quot;com.android.internal.os.RuntimeInit&quot;, args, zygote);
+
+//=============================================================================================
+
+xref: /frameworks/base/core/jni/AndroidRuntime.cpp
+
+1136  void AndroidRuntime::start(const char* className, const Vector&lt;String8&gt;&amp; options, bool zygote)
+1193      if (startVm(&amp;mJavaVM, &amp;env, zygote, primary_zygote) != 0) {
+1201      if (startReg(env) &lt; 0) {  //设置NativeFrameStack大小、注册JNI函数
+1239          jmethodID startMeth = env-&gt;GetStaticMethodID(startClass, &quot;main&quot;,
+1240              &quot;([Ljava/lang/String;)V&quot;);
+1245              env-&gt;CallStaticVoidMethod(startClass, startMeth, strArray);   //ART虚拟机真正运行
+    -&gt;
+609  int AndroidRuntime::startVm(JavaVM** pJavaVM, JNIEnv** pEnv, bool zygote, bool primary_zygote)
+1095      if (JNI_CreateJavaVM(pJavaVM, pEnv, &amp;initArgs) &lt; 0) {
+
+//=============================================================================================
+
+xref: /art/runtime/jni/java_vm_ext.cc
+
+1195  extern &quot;C&quot; jint JNI_CreateJavaVM(JavaVM** p_vm, JNIEnv** p_env, void* vm_args) {
+1225    *p_env = Thread::Current()-&gt;GetJniEnv();    //获取之前已经在Attach流程实例化JniEnv
+1226    *p_vm = runtime-&gt;GetJavaVM();
+</code></pre>
+<ul>
+<li>JniEnv创建在JNIEnvExt::Create，主要初始化了native函数表。</li>
+</ul>
+<pre><code class="language-java">xref: /art/runtime/thread.cc
+
+980  Thread* Thread::Attach(const char* thread_name, bool as_daemon, PeerAction peer_action) {
+999        bool init_success = self-&gt;Init(runtime-&gt;GetThreadList(), runtime-&gt;GetJavaVM());
+    -&gt;
+967      tlsPtr_.jni_env = JNIEnvExt::Create(this, java_vm, &amp;error_msg);
+
+//=============================================================================================
+
+xref: /art/runtime/jni/jni_env_ext.cc
+
+68  JNIEnvExt* JNIEnvExt::Create(Thread* self_in, JavaVMExt* vm_in, std::string* error_msg) {
+69    std::unique_ptr&lt;JNIEnvExt&gt; ret(new JNIEnvExt(self_in, vm_in, error_msg));
+    -&gt;
+76  JNIEnvExt::JNIEnvExt(Thread* self_in, JavaVMExt* vm_in, std::string* error_msg)
+87    functions = GetFunctionTable(check_jni_);
+    -&gt;
+323    return check_jni ? GetCheckJniNativeInterface() : GetJniNativeInterface();   //AndroidMainfest.xml中debuggable控制
+
+//=============================================================================================
+
+xref: /art/runtime/jni/jni_internal.cc
+
+2962  const JNINativeInterface* GetJniNativeInterface() {
+2963    // The template argument is passed down through the Encode/DecodeArtMethod/Field calls so if
+2964    // JniIdType is kPointer the calls will be a simple cast with no branches. This ensures that
+2965    // the normal case is still fast.
+2966    return Runtime::Current()-&gt;GetJniIdType() == JniIdType::kPointer
+2967               ? &amp;JniNativeInterfaceFunctions&lt;false&gt;::gJniNativeInterface
+2968               : &amp;JniNativeInterfaceFunctions&lt;true&gt;::gJniNativeInterface;
+2969  }
+</code></pre>
+<ul>
+<li>JavaVM创建在JavaVMExt::Create中，主要设置jvm参数、设置aot编译逻辑等，以及attach主线程</li>
+</ul>
+<pre><code class="language-java">xref: /art/runtime/runtime.cc
+
+763  bool Runtime::Create(const RuntimeOptions&amp; raw_options, bool ignore_unrecognized) {
+765    return ParseOptions(raw_options, ignore_unrecognized, &amp;runtime_options) &amp;&amp;
+766        Create(std::move(runtime_options));
+746  bool Runtime::Create(RuntimeArgumentMap&amp;&amp; runtime_options) {
+751    instance_ = new Runtime;
+752    Locks::SetClientCallback(IsSafeToCallAbort);
+753    if (!instance_-&gt;Init(std::move(runtime_options))) {
+    -&gt;
+1186  bool Runtime::Init(RuntimeArgumentMap&amp;&amp; runtime_options_in) {
+937    SetUpAlternateSignalStack();
+941    InitCpu();
+942    InitTlsEntryPoints();
+943    RemoveSuspendTrigger();
+944    InitCardTable();
+945    InitTid();
+... //初始化的代码很长，包括设置jvm参数、aot编译的逻辑等都在这里进行,java_vm_就是实例化的vm对象
+1536    java_vm_ = JavaVMExt::Create(this, runtime_options, &amp;error_msg);
+1551    Thread* self = Thread::Attach(&quot;main&quot;, false, nullptr, false);   //main线程在这里绑定
+</code></pre>
+<hr />
+<h3 id="art_1">ART虚拟机运行分析</h3>
+<pre><code class="language-java">xref: /frameworks/base/core/jni/AndroidRuntime.cpp
+
+1136  void AndroidRuntime::start(const char* className, const Vector&lt;String8&gt;&amp; options, bool zygote)
+1245              env-&gt;CallStaticVoidMethod(startClass, startMeth, strArray);
+
+
+xref: /art/runtime/jni/check_jni.cc
+
+2311    static void CallStaticVoidMethod(JNIEnv* env, jclass c, jmethodID mid, ...) {
+2314      CallMethodV(__FUNCTION__, env, nullptr, c, mid, vargs, Primitive::kPrimVoid, kStatic);
+    //这里区分不同的调用类型执行
+3271            switch (invoke) {
+3272              case kVirtual:
+3273                result.L = baseEnv(env)-&gt;CallObjectMethodV(env, obj, mid, vargs);
+3274                break;
+3275              case kDirect:
+3276                result.L = baseEnv(env)-&gt;CallNonvirtualObjectMethodV(env, obj, c, mid, vargs);
+3277                break;
+3278              case kStatic:
+3279                result.L = baseEnv(env)-&gt;CallStaticObjectMethodV(env, c, mid, vargs);
+3280                break;
+3281              default:
+3282                LOG(FATAL) &lt;&lt; &quot;Unexpected invoke: &quot; &lt;&lt; invoke;
+3283            }
+</code></pre>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.ce72ebac.min.js"></script>
+      
+    
+  </body>
+</html>
