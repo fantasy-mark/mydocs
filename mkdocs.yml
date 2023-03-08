@@ -1,0 +1,18 @@
+site_name: 个人图书馆
+
+theme:
+  name: material
+
+plugins:
+    - search # built-in search must be always activated
+    - drawio-exporter
+
+nav:
+   - 器:
+     - 工具:
+       - mkdocs: 器\工具\mkdocs.md
+       - 常用命令: 器\工具\常用命令.md
+   - 术:
+     - 框架:
+       - ART流程分析: 术\框架\ART流程分析.md
+       - binder走读: 术\框架\binder走读.md

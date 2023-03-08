@@ -1,0 +1,14 @@
+*.apk
+*.txt
+.gradle
+.idea/
+!.idea/icon*.png
+*.iml
+[Tt]mp/
+build/
+site/
+docs/drawio-exporter/
+src/main/gen
+src/main/resources/templates.list
+src/main/resources/gitignore/*
+src/main/resources/toptal/*
