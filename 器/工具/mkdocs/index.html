@@ -9,6 +9,8 @@
       
       
       
+        <link rel="prev" href="../docker/">
+      
       
         <link rel="next" href="../%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
       
@@ -237,6 +239,20 @@
           工具
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docker/" class="md-nav__link">
+        docker
+      </a>
+    </li>
+  
+
+            
           
             
               
@@ -552,21 +568,21 @@
   <h1>mkdocs</h1>
 
 <h3 id="_1">创建项目</h3>
-<pre><code class="language-bash">   3 pip install mkdocs mkdocs-material
-   # 创建项目
-   5 mkdocs new my-project
-   # 添加主题 name: material
-   8 notepad.exe .\mkdocs.yml
-  13 mkdocs serve
-  15 git init .
-  16 git remote add origin https://gitee.com/git4mark/docs.git
-  19 git add .
-  20 git commit -m &quot;1st build&quot;
-  24 git push --set-upstream origin master
-  25 git push
-  # 此操作是推送到gh-pages分支，必须这么做！
-  26 mkdocs.exe gh-deploy
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="w">   </span><span class="m">3</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>mkdocs<span class="w"> </span>mkdocs-material
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">   </span><span class="c1"># 创建项目</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">   </span><span class="m">5</span><span class="w"> </span>mkdocs<span class="w"> </span>new<span class="w"> </span>my-project
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">   </span><span class="c1"># 添加主题 name: material</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">   </span><span class="m">8</span><span class="w"> </span>notepad.exe<span class="w"> </span>.<span class="se">\m</span>kdocs.yml
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="m">13</span><span class="w"> </span>mkdocs<span class="w"> </span>serve
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="m">15</span><span class="w"> </span>git<span class="w"> </span>init<span class="w"> </span>.
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">  </span><span class="m">16</span><span class="w"> </span>git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>origin<span class="w"> </span>https://gitee.com/git4mark/docs.git
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">  </span><span class="m">19</span><span class="w"> </span>git<span class="w"> </span>add<span class="w"> </span>.
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">  </span><span class="m">20</span><span class="w"> </span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;1st build&quot;</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">  </span><span class="m">24</span><span class="w"> </span>git<span class="w"> </span>push<span class="w"> </span>--set-upstream<span class="w"> </span>origin<span class="w"> </span>master
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">  </span><span class="m">25</span><span class="w"> </span>git<span class="w"> </span>push
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">  </span><span class="c1"># 此操作是推送到gh-pages分支，必须这么做！</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">  </span><span class="m">26</span><span class="w"> </span>mkdocs.exe<span class="w"> </span>gh-deploy
+</code></pre></div>
 <h3 id="gitee">gitee设置</h3>
 <blockquote>
 <p>项目页面-》服务标签-》Gitee Pages打开配置</p>
@@ -577,41 +593,41 @@
 <ul>
 <li>左侧导航条</li>
 </ul>
-<pre><code class="language-yaml">nav:
-  - 一. 介绍: index.md
-  - 二. 安装:
-      - 1. 本地环境搭建: install/local.md
-      - 2. 发布至GitHub Pages: install/github-pages.md
-      - 3. 发布至自己的HTTP Server: install/http-server.md
-  - 三. 语法:
-      - 1. 语法总览: syntax/main.md
-      - 2. 标题: syntax/headline.md
-      - 3. 段落: syntax/paragraph.md # (1)
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">nav</span><span class="p">:</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">一. 介绍</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">index.md</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">二. 安装</span><span class="p">:</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">1. 本地环境搭建</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">install/local.md</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">2. 发布至GitHub Pages</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">install/github-pages.md</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">3. 发布至自己的HTTP Server</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">install/http-server.md</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">三. 语法</span><span class="p">:</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">1. 语法总览</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">syntax/main.md</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">2. 标题</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">syntax/headline.md</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">3. 段落</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">syntax/paragraph.md</span><span class="w"> </span><span class="c1"># (1)</span>
+</code></pre></div>
 <h3 id="drawio">进阶（搭配drawio）</h3>
 <p><a href="https://www.cnpython.com/pypi/mkdocs-drawio-exporter">参考</a></p>
 <ul>
 <li><a href="https://github.com/jgraph/drawio-desktop/releases">安装</a></li>
 </ul>
-<pre><code class="language-bash">pip install mkdocs-drawio-exporter
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>pip<span class="w"> </span>install<span class="w"> </span>mkdocs-drawio-exporter
+</code></pre></div>
 <ul>
 <li>配置</li>
 </ul>
 <p>1）需要安装draw.io且配置环境变量到PATH</p>
 <p>2）draw文件路径不能包含中文</p>
 <p>3） yaml文件中配置</p>
-<pre><code class="language-yaml">plugins:
-    - search # built-in search must be always activated
-    - drawio-exporter
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">plugins</span><span class="p">:</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">search</span><span class="w"> </span><span class="c1"># built-in search must be always activated</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">drawio-exporter</span>
+</code></pre></div>
 <ul>
 <li>使用</li>
 </ul>
-<pre><code class="language-markdown">![My alt text](my-diagram.drawio)
-# 多页
-![Page 1](my-diagram.drawio#0)
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>![<span class="nt">My alt text</span>](<span class="na">my-diagram.drawio</span>)
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="gh"># 多页</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>![<span class="nt">Page 1</span>](<span class="na">my-diagram.drawio#0</span>)
+</code></pre></div>
 
 
 

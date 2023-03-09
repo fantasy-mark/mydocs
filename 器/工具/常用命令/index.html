@@ -246,6 +246,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../docker/" class="md-nav__link">
+        docker
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../mkdocs/" class="md-nav__link">
         mkdocs
       </a>
@@ -529,64 +543,64 @@
 <ul>
 <li>查找设备</li>
 </ul>
-<pre><code class="language-bash">adb devices
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>adb<span class="w"> </span>devices
+</code></pre></div>
 <ul>
 <li>获取当前 Activity</li>
 </ul>
-<pre><code class="language-bash">adb shell dumpsys activity activities | findstr mResumedActivity
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>adb<span class="w"> </span>shell<span class="w"> </span>dumpsys<span class="w"> </span>activity<span class="w"> </span>activities<span class="w"> </span><span class="p">|</span><span class="w"> </span>findstr<span class="w"> </span>mResumedActivity
+</code></pre></div>
 <ul>
 <li>拉取当前 apk 到本地</li>
 </ul>
-<pre><code class="language-shell">adb shell pm path packageName
-adb pull xxx.apk .
-# PS D:\docs&gt; adb shell pm path cn.soulapp.android
-# package:/data/app/cn.soulapp.android-p0zMa4iCS9lt56ETMszpxg==/base.apk
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>adb<span class="w"> </span>shell<span class="w"> </span>pm<span class="w"> </span>path<span class="w"> </span>packageName
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>adb<span class="w"> </span>pull<span class="w"> </span>xxx.apk<span class="w"> </span>.
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="c1"># PS D:\docs&gt; adb shell pm path cn.soulapp.android</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># package:/data/app/cn.soulapp.android-p0zMa4iCS9lt56ETMszpxg==/base.apk</span>
+</code></pre></div>
 <h3 id="git">git相关</h3>
 <ul>
 <li>新建新仓库</li>
 </ul>
-<pre><code class="language-bash">git clone https://jihulab.com/1987/mydocs.git
-cd mydocs
-git switch -c main
-touch README.md
-git add README.md
-git commit -m &quot;add README&quot;
-git push -u origin main
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://jihulab.com/1987/mydocs.git
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nb">cd</span><span class="w"> </span>mydocs
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>git<span class="w"> </span>switch<span class="w"> </span>-c<span class="w"> </span>main
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>touch<span class="w"> </span>README.md
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>git<span class="w"> </span>add<span class="w"> </span>README.md
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;add README&quot;</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>git<span class="w"> </span>push<span class="w"> </span>-u<span class="w"> </span>origin<span class="w"> </span>main
+</code></pre></div>
 <ul>
 <li>推送现有本地仓库</li>
 </ul>
-<pre><code class="language-bash">git init --initial-branch=main
-git remote add origin https://jihulab.com/1987/mydocs.git
-git add .
-git commit -m &quot;Initial commit&quot;
-git push -u origin main
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>git<span class="w"> </span>init<span class="w"> </span>--initial-branch<span class="o">=</span>main
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>origin<span class="w"> </span>https://jihulab.com/1987/mydocs.git
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>git<span class="w"> </span>add<span class="w"> </span>.
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Initial commit&quot;</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>git<span class="w"> </span>push<span class="w"> </span>-u<span class="w"> </span>origin<span class="w"> </span>main
+</code></pre></div>
 <ul>
 <li>推送现有远程仓库</li>
 </ul>
-<pre><code class="language-bash">git remote rename origin old-origin
-git remote add origin https://jihulab.com/1987/mydocs.git
-git push -u origin --all
-git push -u origin --tags
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>git<span class="w"> </span>remote<span class="w"> </span>rename<span class="w"> </span>origin<span class="w"> </span>old-origin
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>origin<span class="w"> </span>https://jihulab.com/1987/mydocs.git
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>git<span class="w"> </span>push<span class="w"> </span>-u<span class="w"> </span>origin<span class="w"> </span>--all
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>git<span class="w"> </span>push<span class="w"> </span>-u<span class="w"> </span>origin<span class="w"> </span>--tags
+</code></pre></div>
 <ul>
 <li>获取add未commit修改</li>
 </ul>
-<pre><code class="language-shell">git add
-git diff --cached
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>git<span class="w"> </span>add
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>git<span class="w"> </span>diff<span class="w"> </span>--cached
+</code></pre></div>
 <ul>
 <li>删除未忽略且已经push到远程的文件</li>
 </ul>
-<pre><code>git rm -r --cached xxx
-# 修改.gitignore
-git add .
-git commit -am &quot;gitignore文件修改删除XXX文件&quot;
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>git rm -r --cached xxx
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a># 修改.gitignore
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>git add .
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>git commit -am &quot;gitignore文件修改删除XXX文件&quot;
+</code></pre></div>
 
 
 

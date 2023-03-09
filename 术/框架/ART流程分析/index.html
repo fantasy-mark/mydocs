@@ -242,6 +242,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../%E5%99%A8/%E5%B7%A5%E5%85%B7/docker/" class="md-nav__link">
+        docker
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../%E5%99%A8/%E5%B7%A5%E5%85%B7/mkdocs/" class="md-nav__link">
         mkdocs
       </a>
@@ -563,124 +577,124 @@
 </li>
 </ol>
 <p><img alt="虚拟机启动" src="../art_start.drawio-0.svg" /></p>
-<pre><code class="language-java">//init.rc
-service zygote /system/bin/app_process -Xzygote /system/bin --zygote --start-system-server
-
-xref: /frameworks/base/cmds/app_process/app_main.cpp
-173  int main(int argc, char* const argv[])
-185      AppRuntime runtime(argv[0], computeArgBlockSize(argc, argv));
-    -&gt;
-34  class AppRuntime : public AndroidRuntime
-338          runtime.start(&quot;com.android.internal.os.RuntimeInit&quot;, args, zygote);
-
-//=============================================================================================
-
-xref: /frameworks/base/core/jni/AndroidRuntime.cpp
-
-1136  void AndroidRuntime::start(const char* className, const Vector&lt;String8&gt;&amp; options, bool zygote)
-1193      if (startVm(&amp;mJavaVM, &amp;env, zygote, primary_zygote) != 0) {
-1201      if (startReg(env) &lt; 0) {  //设置NativeFrameStack大小、注册JNI函数
-1239          jmethodID startMeth = env-&gt;GetStaticMethodID(startClass, &quot;main&quot;,
-1240              &quot;([Ljava/lang/String;)V&quot;);
-1245              env-&gt;CallStaticVoidMethod(startClass, startMeth, strArray);   //ART虚拟机真正运行
-    -&gt;
-609  int AndroidRuntime::startVm(JavaVM** pJavaVM, JNIEnv** pEnv, bool zygote, bool primary_zygote)
-1095      if (JNI_CreateJavaVM(pJavaVM, pEnv, &amp;initArgs) &lt; 0) {
-
-//=============================================================================================
-
-xref: /art/runtime/jni/java_vm_ext.cc
-
-1195  extern &quot;C&quot; jint JNI_CreateJavaVM(JavaVM** p_vm, JNIEnv** p_env, void* vm_args) {
-1225    *p_env = Thread::Current()-&gt;GetJniEnv();    //获取之前已经在Attach流程实例化JniEnv
-1226    *p_vm = runtime-&gt;GetJavaVM();
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1">//init.rc</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">service</span><span class="w"> </span><span class="n">zygote</span><span class="w"> </span><span class="o">/</span><span class="n">system</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">app_process</span><span class="w"> </span><span class="o">-</span><span class="n">Xzygote</span><span class="w"> </span><span class="o">/</span><span class="n">system</span><span class="o">/</span><span class="n">bin</span><span class="w"> </span><span class="o">--</span><span class="n">zygote</span><span class="w"> </span><span class="o">--</span><span class="n">start</span><span class="o">-</span><span class="n">system</span><span class="o">-</span><span class="n">server</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nl">xref</span><span class="p">:</span><span class="w"> </span><span class="o">/</span><span class="n">frameworks</span><span class="o">/</span><span class="n">base</span><span class="o">/</span><span class="n">cmds</span><span class="o">/</span><span class="n">app_process</span><span class="o">/</span><span class="n">app_main</span><span class="p">.</span><span class="na">cpp</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="mi">173</span><span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="n">argv</span><span class="o">[]</span><span class="p">)</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="mi">185</span><span class="w">      </span><span class="n">AppRuntime</span><span class="w"> </span><span class="nf">runtime</span><span class="p">(</span><span class="n">argv</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">computeArgBlockSize</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="n">argv</span><span class="p">));</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span><span class="o">-&gt;</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="mi">34</span><span class="w">  </span><span class="kd">class</span> <span class="nc">AppRuntime</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kd">public</span><span class="w"> </span><span class="n">AndroidRuntime</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="mi">338</span><span class="w">          </span><span class="n">runtime</span><span class="p">.</span><span class="na">start</span><span class="p">(</span><span class="s">&quot;com.android.internal.os.RuntimeInit&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">args</span><span class="p">,</span><span class="w"> </span><span class="n">zygote</span><span class="p">);</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="c1">//=============================================================================================</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="nl">xref</span><span class="p">:</span><span class="w"> </span><span class="o">/</span><span class="n">frameworks</span><span class="o">/</span><span class="n">base</span><span class="o">/</span><span class="n">core</span><span class="o">/</span><span class="n">jni</span><span class="o">/</span><span class="n">AndroidRuntime</span><span class="p">.</span><span class="na">cpp</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="mi">1136</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">AndroidRuntime</span><span class="p">::</span><span class="n">start</span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">className</span><span class="p">,</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="n">Vector</span><span class="o">&lt;</span><span class="n">String8</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">options</span><span class="p">,</span><span class="w"> </span><span class="n">bool</span><span class="w"> </span><span class="n">zygote</span><span class="p">)</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="mi">1193</span><span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">startVm</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mJavaVM</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">env</span><span class="p">,</span><span class="w"> </span><span class="n">zygote</span><span class="p">,</span><span class="w"> </span><span class="n">primary_zygote</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="mi">1201</span><span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">startReg</span><span class="p">(</span><span class="n">env</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="c1">//设置NativeFrameStack大小、注册JNI函数</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="mi">1239</span><span class="w">          </span><span class="n">jmethodID</span><span class="w"> </span><span class="n">startMeth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">env</span><span class="o">-&gt;</span><span class="n">GetStaticMethodID</span><span class="p">(</span><span class="n">startClass</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;main&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="mi">1240</span><span class="w">              </span><span class="s">&quot;([Ljava/lang/String;)V&quot;</span><span class="p">);</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="mi">1245</span><span class="w">              </span><span class="n">env</span><span class="o">-&gt;</span><span class="n">CallStaticVoidMethod</span><span class="p">(</span><span class="n">startClass</span><span class="p">,</span><span class="w"> </span><span class="n">startMeth</span><span class="p">,</span><span class="w"> </span><span class="n">strArray</span><span class="p">);</span><span class="w">   </span><span class="c1">//ART虚拟机真正运行</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">    </span><span class="o">-&gt;</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="mi">609</span><span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">AndroidRuntime</span><span class="p">::</span><span class="n">startVm</span><span class="p">(</span><span class="n">JavaVM</span><span class="o">**</span><span class="w"> </span><span class="n">pJavaVM</span><span class="p">,</span><span class="w"> </span><span class="n">JNIEnv</span><span class="o">**</span><span class="w"> </span><span class="n">pEnv</span><span class="p">,</span><span class="w"> </span><span class="n">bool</span><span class="w"> </span><span class="n">zygote</span><span class="p">,</span><span class="w"> </span><span class="n">bool</span><span class="w"> </span><span class="n">primary_zygote</span><span class="p">)</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="mi">1095</span><span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">JNI_CreateJavaVM</span><span class="p">(</span><span class="n">pJavaVM</span><span class="p">,</span><span class="w"> </span><span class="n">pEnv</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">initArgs</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="c1">//=============================================================================================</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="nl">xref</span><span class="p">:</span><span class="w"> </span><span class="o">/</span><span class="n">art</span><span class="o">/</span><span class="n">runtime</span><span class="o">/</span><span class="n">jni</span><span class="o">/</span><span class="n">java_vm_ext</span><span class="p">.</span><span class="na">cc</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="mi">1195</span><span class="w">  </span><span class="n">extern</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="w"> </span><span class="n">jint</span><span class="w"> </span><span class="nf">JNI_CreateJavaVM</span><span class="p">(</span><span class="n">JavaVM</span><span class="o">**</span><span class="w"> </span><span class="n">p_vm</span><span class="p">,</span><span class="w"> </span><span class="n">JNIEnv</span><span class="o">**</span><span class="w"> </span><span class="n">p_env</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="o">*</span><span class="w"> </span><span class="n">vm_args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="mi">1225</span><span class="w">    </span><span class="o">*</span><span class="n">p_env</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Thread</span><span class="p">::</span><span class="n">Current</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">GetJniEnv</span><span class="p">();</span><span class="w">    </span><span class="c1">//获取之前已经在Attach流程实例化JniEnv</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="mi">1226</span><span class="w">    </span><span class="o">*</span><span class="n">p_vm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">runtime</span><span class="o">-&gt;</span><span class="n">GetJavaVM</span><span class="p">();</span>
+</code></pre></div>
 <ul>
 <li>JniEnv创建在JNIEnvExt::Create，主要初始化了native函数表。</li>
 </ul>
-<pre><code class="language-java">xref: /art/runtime/thread.cc
-
-980  Thread* Thread::Attach(const char* thread_name, bool as_daemon, PeerAction peer_action) {
-999        bool init_success = self-&gt;Init(runtime-&gt;GetThreadList(), runtime-&gt;GetJavaVM());
-    -&gt;
-967      tlsPtr_.jni_env = JNIEnvExt::Create(this, java_vm, &amp;error_msg);
-
-//=============================================================================================
-
-xref: /art/runtime/jni/jni_env_ext.cc
-
-68  JNIEnvExt* JNIEnvExt::Create(Thread* self_in, JavaVMExt* vm_in, std::string* error_msg) {
-69    std::unique_ptr&lt;JNIEnvExt&gt; ret(new JNIEnvExt(self_in, vm_in, error_msg));
-    -&gt;
-76  JNIEnvExt::JNIEnvExt(Thread* self_in, JavaVMExt* vm_in, std::string* error_msg)
-87    functions = GetFunctionTable(check_jni_);
-    -&gt;
-323    return check_jni ? GetCheckJniNativeInterface() : GetJniNativeInterface();   //AndroidMainfest.xml中debuggable控制
-
-//=============================================================================================
-
-xref: /art/runtime/jni/jni_internal.cc
-
-2962  const JNINativeInterface* GetJniNativeInterface() {
-2963    // The template argument is passed down through the Encode/DecodeArtMethod/Field calls so if
-2964    // JniIdType is kPointer the calls will be a simple cast with no branches. This ensures that
-2965    // the normal case is still fast.
-2966    return Runtime::Current()-&gt;GetJniIdType() == JniIdType::kPointer
-2967               ? &amp;JniNativeInterfaceFunctions&lt;false&gt;::gJniNativeInterface
-2968               : &amp;JniNativeInterfaceFunctions&lt;true&gt;::gJniNativeInterface;
-2969  }
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nl">xref</span><span class="p">:</span><span class="w"> </span><span class="o">/</span><span class="n">art</span><span class="o">/</span><span class="n">runtime</span><span class="o">/</span><span class="n">thread</span><span class="p">.</span><span class="na">cc</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="mi">980</span><span class="w">  </span><span class="n">Thread</span><span class="o">*</span><span class="w"> </span><span class="n">Thread</span><span class="p">::</span><span class="n">Attach</span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">thread_name</span><span class="p">,</span><span class="w"> </span><span class="n">bool</span><span class="w"> </span><span class="n">as_daemon</span><span class="p">,</span><span class="w"> </span><span class="n">PeerAction</span><span class="w"> </span><span class="n">peer_action</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="mi">999</span><span class="w">        </span><span class="n">bool</span><span class="w"> </span><span class="n">init_success</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">self</span><span class="o">-&gt;</span><span class="n">Init</span><span class="p">(</span><span class="n">runtime</span><span class="o">-&gt;</span><span class="n">GetThreadList</span><span class="p">(),</span><span class="w"> </span><span class="n">runtime</span><span class="o">-&gt;</span><span class="n">GetJavaVM</span><span class="p">());</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="o">-&gt;</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="mi">967</span><span class="w">      </span><span class="n">tlsPtr_</span><span class="p">.</span><span class="na">jni_env</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">JNIEnvExt</span><span class="p">::</span><span class="n">Create</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">java_vm</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">error_msg</span><span class="p">);</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="c1">//=============================================================================================</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="nl">xref</span><span class="p">:</span><span class="w"> </span><span class="o">/</span><span class="n">art</span><span class="o">/</span><span class="n">runtime</span><span class="o">/</span><span class="n">jni</span><span class="o">/</span><span class="n">jni_env_ext</span><span class="p">.</span><span class="na">cc</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="mi">68</span><span class="w">  </span><span class="n">JNIEnvExt</span><span class="o">*</span><span class="w"> </span><span class="n">JNIEnvExt</span><span class="p">::</span><span class="n">Create</span><span class="p">(</span><span class="n">Thread</span><span class="o">*</span><span class="w"> </span><span class="n">self_in</span><span class="p">,</span><span class="w"> </span><span class="n">JavaVMExt</span><span class="o">*</span><span class="w"> </span><span class="n">vm_in</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="p">::</span><span class="n">string</span><span class="o">*</span><span class="w"> </span><span class="n">error_msg</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="mi">69</span><span class="w">    </span><span class="n">std</span><span class="p">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">JNIEnvExt</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">ret</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">JNIEnvExt</span><span class="p">(</span><span class="n">self_in</span><span class="p">,</span><span class="w"> </span><span class="n">vm_in</span><span class="p">,</span><span class="w"> </span><span class="n">error_msg</span><span class="p">));</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">    </span><span class="o">-&gt;</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="mi">76</span><span class="w">  </span><span class="n">JNIEnvExt</span><span class="p">::</span><span class="n">JNIEnvExt</span><span class="p">(</span><span class="n">Thread</span><span class="o">*</span><span class="w"> </span><span class="n">self_in</span><span class="p">,</span><span class="w"> </span><span class="n">JavaVMExt</span><span class="o">*</span><span class="w"> </span><span class="n">vm_in</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="p">::</span><span class="n">string</span><span class="o">*</span><span class="w"> </span><span class="n">error_msg</span><span class="p">)</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="mi">87</span><span class="w">    </span><span class="n">functions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetFunctionTable</span><span class="p">(</span><span class="n">check_jni_</span><span class="p">);</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">    </span><span class="o">-&gt;</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="mi">323</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">check_jni</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">GetCheckJniNativeInterface</span><span class="p">()</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">GetJniNativeInterface</span><span class="p">();</span><span class="w">   </span><span class="c1">//AndroidMainfest.xml中debuggable控制</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="c1">//=============================================================================================</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="nl">xref</span><span class="p">:</span><span class="w"> </span><span class="o">/</span><span class="n">art</span><span class="o">/</span><span class="n">runtime</span><span class="o">/</span><span class="n">jni</span><span class="o">/</span><span class="n">jni_internal</span><span class="p">.</span><span class="na">cc</span>
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="mi">2962</span><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="n">JNINativeInterface</span><span class="o">*</span><span class="w"> </span><span class="n">GetJniNativeInterface</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="mi">2963</span><span class="w">    </span><span class="c1">// The template argument is passed down through the Encode/DecodeArtMethod/Field calls so if</span>
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="mi">2964</span><span class="w">    </span><span class="c1">// JniIdType is kPointer the calls will be a simple cast with no branches. This ensures that</span>
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="mi">2965</span><span class="w">    </span><span class="c1">// the normal case is still fast.</span>
+<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="mi">2966</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Runtime</span><span class="p">::</span><span class="n">Current</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">GetJniIdType</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">JniIdType</span><span class="p">::</span><span class="n">kPointer</span>
+<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a><span class="mi">2967</span><span class="w">               </span><span class="o">?</span><span class="w"> </span><span class="o">&amp;</span><span class="n">JniNativeInterfaceFunctions</span><span class="o">&lt;</span><span class="kc">false</span><span class="o">&gt;</span><span class="p">::</span><span class="n">gJniNativeInterface</span>
+<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a><span class="mi">2968</span><span class="w">               </span><span class="p">:</span><span class="w"> </span><span class="o">&amp;</span><span class="n">JniNativeInterfaceFunctions</span><span class="o">&lt;</span><span class="kc">true</span><span class="o">&gt;</span><span class="p">::</span><span class="n">gJniNativeInterface</span><span class="p">;</span>
+<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a><span class="mi">2969</span><span class="w">  </span><span class="p">}</span>
+</code></pre></div>
 <ul>
 <li>JavaVM创建在JavaVMExt::Create中，主要设置jvm参数、设置aot编译逻辑等，以及attach主线程</li>
 </ul>
-<pre><code class="language-java">xref: /art/runtime/runtime.cc
-
-763  bool Runtime::Create(const RuntimeOptions&amp; raw_options, bool ignore_unrecognized) {
-765    return ParseOptions(raw_options, ignore_unrecognized, &amp;runtime_options) &amp;&amp;
-766        Create(std::move(runtime_options));
-746  bool Runtime::Create(RuntimeArgumentMap&amp;&amp; runtime_options) {
-751    instance_ = new Runtime;
-752    Locks::SetClientCallback(IsSafeToCallAbort);
-753    if (!instance_-&gt;Init(std::move(runtime_options))) {
-    -&gt;
-1186  bool Runtime::Init(RuntimeArgumentMap&amp;&amp; runtime_options_in) {
-937    SetUpAlternateSignalStack();
-941    InitCpu();
-942    InitTlsEntryPoints();
-943    RemoveSuspendTrigger();
-944    InitCardTable();
-945    InitTid();
-... //初始化的代码很长，包括设置jvm参数、aot编译的逻辑等都在这里进行,java_vm_就是实例化的vm对象
-1536    java_vm_ = JavaVMExt::Create(this, runtime_options, &amp;error_msg);
-1551    Thread* self = Thread::Attach(&quot;main&quot;, false, nullptr, false);   //main线程在这里绑定
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nl">xref</span><span class="p">:</span><span class="w"> </span><span class="o">/</span><span class="n">art</span><span class="o">/</span><span class="n">runtime</span><span class="o">/</span><span class="n">runtime</span><span class="p">.</span><span class="na">cc</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="mi">763</span><span class="w">  </span><span class="n">bool</span><span class="w"> </span><span class="n">Runtime</span><span class="p">::</span><span class="n">Create</span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="n">RuntimeOptions</span><span class="o">&amp;</span><span class="w"> </span><span class="n">raw_options</span><span class="p">,</span><span class="w"> </span><span class="n">bool</span><span class="w"> </span><span class="n">ignore_unrecognized</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="mi">765</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ParseOptions</span><span class="p">(</span><span class="n">raw_options</span><span class="p">,</span><span class="w"> </span><span class="n">ignore_unrecognized</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">runtime_options</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="mi">766</span><span class="w">        </span><span class="n">Create</span><span class="p">(</span><span class="n">std</span><span class="p">::</span><span class="n">move</span><span class="p">(</span><span class="n">runtime_options</span><span class="p">));</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="mi">746</span><span class="w">  </span><span class="n">bool</span><span class="w"> </span><span class="n">Runtime</span><span class="p">::</span><span class="n">Create</span><span class="p">(</span><span class="n">RuntimeArgumentMap</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">runtime_options</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="mi">751</span><span class="w">    </span><span class="n">instance_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Runtime</span><span class="p">;</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="mi">752</span><span class="w">    </span><span class="n">Locks</span><span class="p">::</span><span class="n">SetClientCallback</span><span class="p">(</span><span class="n">IsSafeToCallAbort</span><span class="p">);</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="mi">753</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">instance_</span><span class="o">-&gt;</span><span class="n">Init</span><span class="p">(</span><span class="n">std</span><span class="p">::</span><span class="n">move</span><span class="p">(</span><span class="n">runtime_options</span><span class="p">)))</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">    </span><span class="o">-&gt;</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="mi">1186</span><span class="w">  </span><span class="n">bool</span><span class="w"> </span><span class="n">Runtime</span><span class="p">::</span><span class="n">Init</span><span class="p">(</span><span class="n">RuntimeArgumentMap</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">runtime_options_in</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="mi">937</span><span class="w">    </span><span class="n">SetUpAlternateSignalStack</span><span class="p">();</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="mi">941</span><span class="w">    </span><span class="n">InitCpu</span><span class="p">();</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="mi">942</span><span class="w">    </span><span class="n">InitTlsEntryPoints</span><span class="p">();</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="mi">943</span><span class="w">    </span><span class="n">RemoveSuspendTrigger</span><span class="p">();</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="mi">944</span><span class="w">    </span><span class="n">InitCardTable</span><span class="p">();</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="mi">945</span><span class="w">    </span><span class="n">InitTid</span><span class="p">();</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="p">...</span><span class="w"> </span><span class="c1">//初始化的代码很长，包括设置jvm参数、aot编译的逻辑等都在这里进行,java_vm_就是实例化的vm对象</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="mi">1536</span><span class="w">    </span><span class="n">java_vm_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">JavaVMExt</span><span class="p">::</span><span class="n">Create</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">runtime_options</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">error_msg</span><span class="p">);</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="mi">1551</span><span class="w">    </span><span class="n">Thread</span><span class="o">*</span><span class="w"> </span><span class="n">self</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Thread</span><span class="p">::</span><span class="n">Attach</span><span class="p">(</span><span class="s">&quot;main&quot;</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="n">nullptr</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span><span class="w">   </span><span class="c1">//main线程在这里绑定</span>
+</code></pre></div>
 <hr />
 <h3 id="art_1">ART虚拟机运行分析</h3>
-<pre><code class="language-java">xref: /frameworks/base/core/jni/AndroidRuntime.cpp
-
-1136  void AndroidRuntime::start(const char* className, const Vector&lt;String8&gt;&amp; options, bool zygote)
-1245              env-&gt;CallStaticVoidMethod(startClass, startMeth, strArray);
-
-
-xref: /art/runtime/jni/check_jni.cc
-
-2311    static void CallStaticVoidMethod(JNIEnv* env, jclass c, jmethodID mid, ...) {
-2314      CallMethodV(__FUNCTION__, env, nullptr, c, mid, vargs, Primitive::kPrimVoid, kStatic);
-    //这里区分不同的调用类型执行
-3271            switch (invoke) {
-3272              case kVirtual:
-3273                result.L = baseEnv(env)-&gt;CallObjectMethodV(env, obj, mid, vargs);
-3274                break;
-3275              case kDirect:
-3276                result.L = baseEnv(env)-&gt;CallNonvirtualObjectMethodV(env, obj, c, mid, vargs);
-3277                break;
-3278              case kStatic:
-3279                result.L = baseEnv(env)-&gt;CallStaticObjectMethodV(env, c, mid, vargs);
-3280                break;
-3281              default:
-3282                LOG(FATAL) &lt;&lt; &quot;Unexpected invoke: &quot; &lt;&lt; invoke;
-3283            }
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nl">xref</span><span class="p">:</span><span class="w"> </span><span class="o">/</span><span class="n">frameworks</span><span class="o">/</span><span class="n">base</span><span class="o">/</span><span class="n">core</span><span class="o">/</span><span class="n">jni</span><span class="o">/</span><span class="n">AndroidRuntime</span><span class="p">.</span><span class="na">cpp</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="mi">1136</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">AndroidRuntime</span><span class="p">::</span><span class="n">start</span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">className</span><span class="p">,</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="n">Vector</span><span class="o">&lt;</span><span class="n">String8</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">options</span><span class="p">,</span><span class="w"> </span><span class="n">bool</span><span class="w"> </span><span class="n">zygote</span><span class="p">)</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="mi">1245</span><span class="w">              </span><span class="n">env</span><span class="o">-&gt;</span><span class="n">CallStaticVoidMethod</span><span class="p">(</span><span class="n">startClass</span><span class="p">,</span><span class="w"> </span><span class="n">startMeth</span><span class="p">,</span><span class="w"> </span><span class="n">strArray</span><span class="p">);</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="nl">xref</span><span class="p">:</span><span class="w"> </span><span class="o">/</span><span class="n">art</span><span class="o">/</span><span class="n">runtime</span><span class="o">/</span><span class="n">jni</span><span class="o">/</span><span class="n">check_jni</span><span class="p">.</span><span class="na">cc</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="mi">2311</span><span class="w">    </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">CallStaticVoidMethod</span><span class="p">(</span><span class="n">JNIEnv</span><span class="o">*</span><span class="w"> </span><span class="n">env</span><span class="p">,</span><span class="w"> </span><span class="n">jclass</span><span class="w"> </span><span class="n">c</span><span class="p">,</span><span class="w"> </span><span class="n">jmethodID</span><span class="w"> </span><span class="n">mid</span><span class="p">,</span><span class="w"> </span><span class="p">...)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="mi">2314</span><span class="w">      </span><span class="n">CallMethodV</span><span class="p">(</span><span class="n">__FUNCTION__</span><span class="p">,</span><span class="w"> </span><span class="n">env</span><span class="p">,</span><span class="w"> </span><span class="n">nullptr</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="p">,</span><span class="w"> </span><span class="n">mid</span><span class="p">,</span><span class="w"> </span><span class="n">vargs</span><span class="p">,</span><span class="w"> </span><span class="n">Primitive</span><span class="p">::</span><span class="n">kPrimVoid</span><span class="p">,</span><span class="w"> </span><span class="n">kStatic</span><span class="p">);</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">    </span><span class="c1">//这里区分不同的调用类型执行</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="mi">3271</span><span class="w">            </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">invoke</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="mi">3272</span><span class="w">              </span><span class="k">case</span><span class="w"> </span><span class="n">kVirtual</span><span class="p">:</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="mi">3273</span><span class="w">                </span><span class="n">result</span><span class="p">.</span><span class="na">L</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">baseEnv</span><span class="p">(</span><span class="n">env</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">CallObjectMethodV</span><span class="p">(</span><span class="n">env</span><span class="p">,</span><span class="w"> </span><span class="n">obj</span><span class="p">,</span><span class="w"> </span><span class="n">mid</span><span class="p">,</span><span class="w"> </span><span class="n">vargs</span><span class="p">);</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="mi">3274</span><span class="w">                </span><span class="k">break</span><span class="p">;</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="mi">3275</span><span class="w">              </span><span class="k">case</span><span class="w"> </span><span class="n">kDirect</span><span class="p">:</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="mi">3276</span><span class="w">                </span><span class="n">result</span><span class="p">.</span><span class="na">L</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">baseEnv</span><span class="p">(</span><span class="n">env</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">CallNonvirtualObjectMethodV</span><span class="p">(</span><span class="n">env</span><span class="p">,</span><span class="w"> </span><span class="n">obj</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="p">,</span><span class="w"> </span><span class="n">mid</span><span class="p">,</span><span class="w"> </span><span class="n">vargs</span><span class="p">);</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="mi">3277</span><span class="w">                </span><span class="k">break</span><span class="p">;</span>
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="mi">3278</span><span class="w">              </span><span class="k">case</span><span class="w"> </span><span class="n">kStatic</span><span class="p">:</span>
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="mi">3279</span><span class="w">                </span><span class="n">result</span><span class="p">.</span><span class="na">L</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">baseEnv</span><span class="p">(</span><span class="n">env</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">CallStaticObjectMethodV</span><span class="p">(</span><span class="n">env</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="p">,</span><span class="w"> </span><span class="n">mid</span><span class="p">,</span><span class="w"> </span><span class="n">vargs</span><span class="p">);</span>
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="mi">3280</span><span class="w">                </span><span class="k">break</span><span class="p">;</span>
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="mi">3281</span><span class="w">              </span><span class="k">default</span><span class="p">:</span>
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a><span class="mi">3282</span><span class="w">                </span><span class="n">LOG</span><span class="p">(</span><span class="n">FATAL</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Unexpected invoke: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">invoke</span><span class="p">;</span>
+<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a><span class="mi">3283</span><span class="w">            </span><span class="p">}</span>
+</code></pre></div>
 
 
 

@@ -67,7 +67,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#memorystream" class="md-skip">
+        <a href="#_1" class="md-skip">
           Skip to content
         </a>
       
@@ -242,6 +242,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../%E5%99%A8/%E5%B7%A5%E5%85%B7/docker/" class="md-nav__link">
+        docker
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../%E5%99%A8/%E5%B7%A5%E5%85%B7/mkdocs/" class="md-nav__link">
         mkdocs
       </a>
@@ -373,8 +387,8 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#memorystream" class="md-nav__link">
-    缓存MemoryStream到内存
+  <a href="#_1" class="md-nav__link">
+    解决加载大图片巨卡问题
   </a>
   
 </li>
@@ -488,8 +502,8 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#memorystream" class="md-nav__link">
-    缓存MemoryStream到内存
+  <a href="#_1" class="md-nav__link">
+    解决加载大图片巨卡问题
   </a>
   
 </li>
@@ -511,21 +525,10 @@
 
   <h1>unity</h1>
 
-<h5 id="memorystream">缓存MemoryStream到内存</h5>
-<p>在Unity中，可以将MemoryStream缓存到字典中进行处理。这里给出一个简单的示例：</p>
-<p>```c#
-Dictionary<string, MemoryStream> streamDict = new Dictionary<string, MemoryStream>();</p>
-<p>// 将MemoryStream添加到字典中
-MemoryStream ms = new MemoryStream();
-streamDict.Add("key", ms);</p>
-<p>// 从字典中获取MemoryStream并进行读写操作
-MemoryStream ms2 = streamDict["key"];
-byte[] data = {1, 2, 3, 4, 5};
-ms2.Write(data, 0, data.Length);</p>
-<p>// 关闭MemoryStream
-ms2.Close();
- ```</p>
-<p>需要注意的是，在使用字典缓存MemoryStream时，需要注意内存管理。当不再需要缓存的MemoryStream时，需要手动关闭并从字典中移除，从而释放内存。</p>
+<h5 id="_1">解决加载大图片巨卡问题</h5>
+<ul>
+<li>使用RawImage而不是Image</li>
+</ul>
 
 
 
