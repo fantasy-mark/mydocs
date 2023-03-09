@@ -2,14 +2,22 @@ site_name: 个人图书馆
 
 theme:
   name: material
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
 
 plugins:
     - search # built-in search must be always activated
     - drawio-exporter
 
 nav:
+   - picture:
    - 器:
      - 工具:
+       - docker: 器\工具\docker.md
        - mkdocs: 器\工具\mkdocs.md
        - 常用命令: 器\工具\常用命令.md
    - 术:
