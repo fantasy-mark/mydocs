@@ -64,7 +64,7 @@ def updateYaml():
     nav += '\n'
     # 根据目录生成nav
     for curDir, dirs, files in os.walk("docs"):
-        dirs[:] = [d for d in dirs if not d == 'drawio-exporter']
+        dirs[:] = [d for d in dirs if not d in ['drawio-exporter', 'picture']]
 
         dirLevel = curDir.split(SEPARATOR)[1:]
         depth = len(dirLevel)

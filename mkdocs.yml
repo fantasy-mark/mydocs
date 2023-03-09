@@ -2,6 +2,7 @@ site_name: 个人图书馆
 
 theme:
   name: material
+  
 markdown_extensions:
   - pymdownx.highlight:
       anchor_linenums: true
@@ -14,7 +15,6 @@ plugins:
     - drawio-exporter
 
 nav:
-   - picture:
    - 器:
      - 工具:
        - docker: 器\工具\docker.md
