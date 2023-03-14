@@ -3,26 +3,53 @@ site_name: 个人图书馆
 theme:
   name: material
   
+# Extensions
 markdown_extensions:
   - pymdownx.highlight:
       anchor_linenums: true
-  - pymdownx.inlinehilite
-  - pymdownx.snippets
-  - pymdownx.superfences
+  - pymdownx.inlinehilite:
+  - pymdownx.snippets:
+  - pymdownx.superfences:
+  - pymdownx.arithmatex:
+  - pymdownx.tabbed:
+  - pymdownx.tasklist:
+      custom_checkbox: true
+
+extra_javascript:
+    ['https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML', 'assets/javascripts/mathjax.js']
+
 
 plugins:
     - search # built-in search must be always activated
     - drawio-exporter
 
 nav:
+   - AI:
+     - 数学基础: AI\数学基础.md
+     - 机器学习: AI\机器学习.md
+     - 神经网络: AI\神经网络.md
+     - 算法基础: AI\算法基础.md
    - 器:
      - 工具:
        - docker: 器\工具\docker.md
        - mkdocs: 器\工具\mkdocs.md
        - 常用命令: 器\工具\常用命令.md
+     - 语言:
+       - Latex: 器\语言\Latex.md
    - 术:
      - Code:
        - unity: 术\Code\unity.md
+     - Demo:
+       - tmp: 术\Demo\tmp.md
      - 框架:
        - ART流程分析: 术\框架\ART流程分析.md
        - binder走读: 术\框架\binder走读.md
+     - 逆向:
+       - tmp: 术\逆向\tmp.md
+   - 道:
+     - 优化:
+       - tmp: 道\优化\tmp.md
+     - 算法:
+       - tmp: 道\算法\tmp.md
+     - 设计:
+       - tmp: 道\设计\tmp.md
