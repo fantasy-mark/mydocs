@@ -33,6 +33,7 @@ nav:
      - 工具:
        - docker: 器\工具\docker.md
        - mkdocs: 器\工具\mkdocs.md
+       - 在线平台: 器\工具\在线平台.md
        - 常用命令: 器\工具\常用命令.md
      - 语言:
        - Latex: 器\语言\Latex.md
