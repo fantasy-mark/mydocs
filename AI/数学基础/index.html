@@ -246,7 +246,7 @@
       
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
-    链式法则
+    求导法则
   </a>
   
 </li>
@@ -386,6 +386,20 @@
     <li class="md-nav__item">
       <a href="../../%E5%99%A8/%E5%B7%A5%E5%85%B7/mkdocs/" class="md-nav__link">
         mkdocs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%99%A8/%E5%B7%A5%E5%85%B7/%E5%9C%A8%E7%BA%BF%E5%B9%B3%E5%8F%B0/" class="md-nav__link">
+        在线平台
       </a>
     </li>
   
@@ -913,7 +927,7 @@
       
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
-    链式法则
+    求导法则
   </a>
   
 </li>
@@ -935,7 +949,73 @@
 
   <h1>数学基础</h1>
 
-<h5 id="_1">链式法则</h5>
+<h5 id="_1">求导法则</h5>
+<blockquote>
+<p>当自变量的增量趋于零时，因变量的增量与自变量的增量之商的极限。</p>
+</blockquote>
+<p>参考</p>
+<blockquote>
+<p>Bilibili 3Blue1Brown 微积分本质 - 04 - 直观理解链式法则和乘积法则</p>
+</blockquote>
+<ul>
+<li>加法法则</li>
+</ul>
+<blockquote>
+<p>和的导数等于分别求导相加</p>
+</blockquote>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+\frac{d}{dx}(\sin(x) + x^2) = \cos{(x)}+2x
+</div>
+<script type="math/tex; mode=display">
+\frac{d}{dx}(\sin(x) + x^2) = \cos{(x)}+2x
+</script>
+</div>
+<ul>
+<li>乘法法则 (理解为面积差得到的两个窄面积)</li>
+</ul>
+<blockquote>
+<p>左乘右导加上左导右乘</p>
+</blockquote>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+\frac{d}{dx}(\sin{(x)} + x^2) = \sin(x)*2x + x^2 * \cos(x)
+</div>
+<script type="math/tex; mode=display">
+\frac{d}{dx}(\sin{(x)} + x^2) = \sin(x)*2x + x^2 * \cos(x)
+</script>
+</div>
+<ul>
+<li>链式法则</li>
+</ul>
+<blockquote>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+\begin{cases}
+若\quad y=f(g(x)) \\
+则\quad \frac{dy}{dx}= \frac{dy}{dg}*\frac{dg}{dx}
+\end{cases}
+</div>
+<script type="math/tex; mode=display">
+\begin{cases}
+若\quad y=f(g(x)) \\
+则\quad \frac{dy}{dx}= \frac{dy}{dg}*\frac{dg}{dx}
+\end{cases}
+</script>
+</div>
+</blockquote>
+<p>理解</p>
+<blockquote>
+<p>自变量x的变化，对于内层函数的影响在于其导数，对于外层函数的影响在于其 <strong>内层函数的结果</strong>，其两者乘积即总的影响</p>
+</blockquote>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+\frac{d}{dx}(\sin(x^2)) = \cos(x^2)*2x
+</div>
+<script type="math/tex; mode=display">
+\frac{d}{dx}(\sin(x^2)) = \cos(x^2)*2x
+</script>
+</div>
 
 
 
